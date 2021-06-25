@@ -1,15 +1,23 @@
 import React from "react";
-import { useAccomsContext } from "../../context/accoms-context";
+import { useAccomsContext } from "../../context/AccomsProvider";
 
 const MainPage = () => {
-  const accoms = useAccomsContext();
+  const {
+    searchResult,
+    dispatchSearchParams,
+    locationTitle
+  } = useAccomsContext();
+
+  console.log(searchResult);
+  console.log(dispatchSearchParams);
+  console.log(locationTitle);
+  // console.log(dispatchSearchParams)
 
   return (
     <>
-      {accoms.length !== 0 ? (
-        <h3>{accoms.accoms.header}</h3>
-      ) : (
-        <h3>Failed to get data</h3>
+      {searchResult && (
+        <h3>{locationTitle}</h3>
+        // <h1>hello</h1>
       )}
     </>
   );
