@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import "./style.css";
 import AppRouter from "./router/AppRouter";
 import reportWebVitals from "./reportWebVitals";
+import AccomProvider from "./context/accoms-context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppRouter />
+    <AccomProvider>
+      <AppRouter />
+    </AccomProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
