@@ -1,0 +1,39 @@
+.items-container {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.top-wrap {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.top-img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.top-title-btn-wrap {
+  position: absolute;
+  top: 40%;
+  left: 27%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-title {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.top-btn {
+  font-size: 1rem;
+  width: 20%;
+  align-self: flex-end;
+  cursor: pointer;
+  background: black;
+  color: white;
+  padding: 0.3rem 0;
+  border-radius: 10px;
+}

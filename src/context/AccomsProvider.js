@@ -17,10 +17,9 @@ const INITIAL_SEARCH_PARAMS = {
 }
 
 const AccomsProvider = ({ children }) => {
-  const [searchResult, setSearchResult] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
   const [searchParams, dispatchSearchParams] = useReducer(searchParamsReducer, INITIAL_SEARCH_PARAMS);
-  // vancouver for now
-  const [cityName, setCityName] = useState("vancouver");
+  const [cityName, setCityName] = useState(null);
   const [locationTitle, setlocationTitle] = useState("");
 
   useEffect(() => {
@@ -37,9 +36,11 @@ const AccomsProvider = ({ children }) => {
             },
           };
           const res = await axios.request(searchOptions);
-          console.log(res.data.data.body.header);
+          console.log(res.data.data);
+          console.log("This is fetchSearchResult");
           setlocationTitle(res.data.data.body.header);
           setSearchResult(res.data.data.body.searchResults.results);
+
         } catch (err) {
           console.log(`Oops, error!: ${err}`)
         }
@@ -50,33 +51,42 @@ const AccomsProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchLocation = async () => {
-      try {
-        const locationOptions = {
-          method: 'GET',
-          url: `https://hotels4.p.rapidapi.com/locations/search`,
-          params: { query: cityName, locale: 'en_CA' },
-          headers: {
-            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
-            'x-rapidapi-host': 'hotels4.p.rapidapi.com'
+      if (cityName) {
+        try {
+          const locationOptions = {
+            method: 'GET',
+            url: `https://hotels4.p.rapidapi.com/locations/search`,
+            params: { query: cityName, locale: 'en_CA' },
+            headers: {
+              'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+              'x-rapidapi-host': 'hotels4.p.rapidapi.com'
+            }
           }
+          const locationRes = await axios.request(locationOptions);
+          console.log(locationRes.data.suggestions);
+          console.log("This is fetchLocation");
+
+          dispatchSearchParams({
+            type: 'SET_DESTINATION_ID',
+            payload: locationRes.data.suggestions[0].entities[0].destinationId
+          });
+        } catch (err) {
+          console.log(`Oops, error!: ${err}`)
         }
-        const locationRes = await axios.request(locationOptions);
-        console.log(locationRes);
-
-
-        dispatchSearchParams({
-          type: 'SET_DESTINATION_ID',
-          payload: locationRes.data.suggestions[0].entities[0].destinationId
-        });
-      } catch (err) {
-        console.log(`Oops, error!: ${err}`)
       }
     };
     fetchLocation();
   }, [cityName]);
 
+  console.log(searchParams);
+
   return (
-    <AccomsContext.Provider value={{ searchResult, setCityName, dispatchSearchParams, locationTitle }}>
+    <AccomsContext.Provider value={{
+      searchResult,
+      setCityName,
+      dispatchSearchParams,
+      locationTitle,
+    }}>
       {children}
     </AccomsContext.Provider>
   );
