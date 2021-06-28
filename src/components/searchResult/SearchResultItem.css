@@ -1,0 +1,4 @@
+.search-item-wrap {
+  display: flex;
+  cursor: pointer;
+}

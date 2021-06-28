@@ -1,0 +1,183 @@
+.checkout-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  margin: 1rem 25rem;
+}
+
+.backBtn-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.checkout-arrow {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 3rem;
+}
+
+.checkout-arrow:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.checkout-backBtn {
+  background-color: transparent;
+  border: transparent;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.yourTrip-wrap {
+  border-bottom: 1px solid lightgray;
+}
+
+.yourTrip-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1.5rem 0rem;
+}
+
+.yourTrip-info {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  margin: 2rem 0rem;
+  align-items: center;
+}
+
+.yourTrip-date {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.yourTrip-data {
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  color: gray;
+}
+
+.yourTrip-btn {
+  text-align: center;
+}
+
+.yourTrip-btn button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.howToPay-title {
+  margin: 1.5rem 0rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.howToPay-container {
+  border: 1px solid lightgray;
+  border-radius: 1rem;
+}
+
+.howToPay-wrap {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+}
+
+.second {
+  border-top: 1px solid lightgray;
+}
+
+.howToPay-text-wrap {
+  padding: 1rem;
+}
+
+.payBold {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.payText {
+  margin: 0.5rem 0rem;
+  color: gray;
+}
+
+.howToPayRadio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.howToPaySpan {
+  margin-right: 0.7rem;
+}
+
+.howToPayRadio input {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.payWith-container {
+  margin: 2rem 0rem;
+  border-top: 1px solid lightgray;
+}
+
+.payMethod{
+    border: 1px solid lightgray;
+    border-radius: 1rem;
+}
+
+.payMethod-wrap{
+    margin: 1rem 0rem;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid lightgray ;
+}
+
+.payWith-wrap {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  align-items: center;
+}
+
+.payWith-text-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.bsCreditCard {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1.5rem;
+  color: gray;
+}
+
+.google{
+    border: 1px solid lightgray
+}
+
+.third{
+    border-bottom: none;
+    margin: 0rem;
+}
+
+.payWithModal {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+}
+/* CHECKOUT RESUME */
+
+.checkout-resume {
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid lightgray;
+  border-radius: 1rem;
+}
