@@ -21,7 +21,7 @@ const SearchResultItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <p>{props.neighbourhood}</p>
-          <p className="review-badge">{props.guestReviews ? props.guestReviews.badge : "-"}</p>
+          <p className="review-badge">{props.guestReviews ? props.guestReviews.badge : "-"}</p> 
           <p>Rating: {props.guestReviews ? props.guestReviews.rating : "-"}</p>
           <p>Price: {props.ratePlan ? props.ratePlan.price.current : "-"}</p>
         </div>
