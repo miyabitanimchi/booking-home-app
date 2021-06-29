@@ -69,6 +69,7 @@
   font-size: 1rem;
   font-weight: bold;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .howToPay-title {
@@ -113,6 +114,10 @@
   justify-content: center;
 }
 
+.radioInput {
+  cursor: pointer;
+}
+
 .howToPaySpan {
   margin-right: 0.7rem;
 }
@@ -127,15 +132,26 @@
   border-top: 1px solid lightgray;
 }
 
-.payMethod{
-    border: 1px solid lightgray;
-    border-radius: 1rem;
+.payMethod {
+  border: 1px solid lightgray;
+  border-radius: 1rem;
 }
 
-.payMethod-wrap{
-    margin: 1rem 0rem;
-    padding: 1rem 1rem;
-    border-bottom: 1px solid lightgray ;
+.payMethod-wrap {
+  margin: 0rem 0rem;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.payMethod-wrap:hover {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: #f1f1f1;
+}
+
+.paypal:hover {
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0rem;
 }
 
 .payWith-wrap {
@@ -159,25 +175,134 @@
   color: gray;
 }
 
-.google{
-    border: 1px solid lightgray
+.google {
+  border: 1px solid lightgray;
 }
 
-.third{
-    border-bottom: none;
-    margin: 0rem;
+.third {
+  border-bottom: none;
+  margin: 0rem;
+}
+
+.third:hover {
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .payWithModal {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.checkout-cancel {
+  border-top: 1px solid lightgray;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.confirmBtn {
+  margin: 2rem 0rem;
+  height: 3rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  border: transparent;
+  background-color: #ff385c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.confirmBtn:hover {
+  background-color: white;
+  color: #ff385c;
+  border: 1px solid #ff385c;
 }
 /* CHECKOUT RESUME */
 
 .checkout-resume {
-  width: 10rem;
-  height: 10rem;
+  width: 100%;
+  height: 33%;
+  padding: 1.5rem;
   border: 1px solid lightgray;
   border-radius: 1rem;
+  
+}
+
+.resume-top {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 1rem;
+}
+
+.resumeImg {
+  width: 124px;
+  height: 106px;
+  background-color: gray;
+  border-radius: 1rem;
+}
+
+.resumeText {
+  margin-left: 1rem;
+}
+
+.resumeTitle {
+  font-size: 0.8rem;
+}
+
+.resumeDescription {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.resumeInfo {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.resumeScore {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.resumeScoreText {
+  margin-left: 0.2rem;
+  font-weight: bold;
+}
+
+.resumePrice {
+  margin: 1.5rem 0rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.priceDetails-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  margin: 1.5rem 0rem;
+}
+
+.priceDetails-text{
+  color: gray;
+}
+
+.priceDetails-number{
+  margin-right: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  color: gray;
+}
+
+.total{
+  color: black;
+  font-weight: bold;
 }
