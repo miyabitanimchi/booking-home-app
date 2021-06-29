@@ -1,21 +1,21 @@
 import React from "react";
 import { useAccomsContext } from "../../context/AccomsProvider";
 import MainPageItem from "./MainPageItem";
+import Loading from "../loading/Loading"
 import "./MainPage.css";
 
 const MainPage = () => {
   const {
     searchResult,
-    locationTitle
+    isLoading,
   } = useAccomsContext();
 
   console.log(searchResult);
-  console.log(locationTitle);
 
   return (
     <>
-      {searchResult && (
-        <main >
+      {(searchResult && !isLoading) ? (
+        <main>
           <section className="top-wrap">
             <img className="top-img" src="../../house.jpg" alt="house with nature" />
             <div className="top-title-btn-wrap">
@@ -31,8 +31,13 @@ const MainPage = () => {
               ))}
             </div>
           </section>
+
         </main>
-      )}
+      ) : (
+          <main>
+            <Loading />
+          </main>
+        )}
     </>
   );
 };

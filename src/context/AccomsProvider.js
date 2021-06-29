@@ -21,10 +21,13 @@ const AccomsProvider = ({ children }) => {
   const [searchParams, dispatchSearchParams] = useReducer(searchParamsReducer, INITIAL_SEARCH_PARAMS);
   const [cityName, setCityName] = useState(null);
   const [locationTitle, setlocationTitle] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  // const [isFirstFetch, setIsfirstFetch] = useState(true);
 
   useEffect(() => {
     const fetchSearchResult = async () => {
       if (searchParams) {
+        setIsLoading(true);
         try {
           const searchOptions = {
             method: "GET",
@@ -40,15 +43,19 @@ const AccomsProvider = ({ children }) => {
           console.log("This is fetchSearchResult");
           setlocationTitle(res.data.data.body.header);
           setSearchResult(res.data.data.body.searchResults.results);
-
+          setIsLoading(false);
+          // setIsfirstFetch(false);
         } catch (err) {
           console.log(`Oops, error!: ${err}`)
         }
       }
     }
+    // searchParams && fetchSearchResult();
     searchParams && fetchSearchResult();
+
   }, [searchParams]);
 
+  // Not executed first time
   useEffect(() => {
     const fetchLocation = async () => {
       if (cityName) {
@@ -86,6 +93,7 @@ const AccomsProvider = ({ children }) => {
       setCityName,
       dispatchSearchParams,
       locationTitle,
+      isLoading,
     }}>
       {children}
     </AccomsContext.Provider>
