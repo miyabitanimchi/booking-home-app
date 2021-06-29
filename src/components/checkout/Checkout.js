@@ -5,6 +5,7 @@ import { BsCreditCard } from 'react-icons/bs';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaCcPaypal } from 'react-icons/fa';
 import { SiGooglepay } from 'react-icons/si';
+import { AiFillStar } from 'react-icons/ai';
 
 import './Checkout.css';
 
@@ -59,6 +60,7 @@ const Checkout = (props) => {
                                 <div className='howToPayRadio'>
                                     <span className='howToPaySpan'>$2,756.60</span>
                                     <input
+                                        className='radioInput'
                                         type='radio'
                                         name='payment'
                                     />
@@ -72,6 +74,7 @@ const Checkout = (props) => {
                                 <div className='howToPayRadio'>
                                     <span className='howToPaySpan'>$1,378.60</span>
                                     <input
+                                        className='radioInput'
                                         type='radio'
                                         name='payment'
                                     />
@@ -93,7 +96,7 @@ const Checkout = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='payMethod-wrap'>
+                            <div className='payMethod-wrap paypal'>
                                 <div className='payWith-wrap'>
                                     <div className='payWith-text-wrap'>
                                         <FaCcPaypal className='bsCreditCard' />
@@ -117,9 +120,66 @@ const Checkout = (props) => {
                             </div>
                         </div>
                     </div>
+                    <div className='checkout-cancel'>
+                        <p className='howToPay-title'>Cancellation policy</p>
+                        <p><span className='boldText'>Free cancellation for 48 hours. </span>After that, cancel before 3:00 PM on Jul. 8 and get a 50% refund, minus the service fee.</p>
+                    </div>
+                    <button
+                        className='confirmBtn'
+                        type='submit'
+                    >Confirm and pay</button>
                 </form>
+                {/* RESUME */}
                 <div className='checkout-resume'>
-
+                    <div className='resume-top'>
+                        <div className='resumeImg'>
+                            <img />
+                        </div>
+                        <div className='resumeText'>
+                            <p className='resumeTitle'>Private room in house in Burnaby</p>
+                            <p className='resumeDescription'>Private room in house in Burnaby</p>
+                            <p className='resumeInfo'>1 bed - 2 baths</p>
+                            <p className='resumeScore'>
+                                <AiFillStar className='star-icon' />
+                                <span className='resumeScoreText'>4.21</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div className='resume-bottom'>
+                        <p className='resumePrice'>Price details</p>
+                        <div className='priceDetails-container'>
+                            <div className='priceDetails-text'>
+                                <p>$42.50 x 14 nights</p>
+                            </div>
+                            <div className='priceDetails-number'>
+                                <p>$595.00</p>
+                            </div>
+                        </div>
+                        <div className='priceDetails-container'>
+                            <div className='priceDetails-text'>
+                                <p>Service fee</p>
+                            </div>
+                            <div className='priceDetails-number'>
+                                <p>$595.00</p>
+                            </div>
+                        </div>
+                        <div className='priceDetails-container'>
+                            <div className='priceDetails-text'>
+                                <p>Extra taxes and fees</p>
+                            </div>
+                            <div className='priceDetails-number'>
+                                <p>$595.00</p>
+                            </div>
+                        </div>
+                        <div className='priceDetails-container'>
+                            <div className='priceDetails-text total'>
+                                <p>Total (CAD)</p>
+                            </div>
+                            <div className='priceDetails-number total'>
+                                <p>$595.00</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
