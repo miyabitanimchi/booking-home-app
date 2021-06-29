@@ -26,8 +26,8 @@ const AccomsProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchSearchResult = async () => {
+      setIsLoading(true);
       if (searchParams) {
-        setIsLoading(true);
         try {
           const searchOptions = {
             method: "GET",
@@ -58,6 +58,7 @@ const AccomsProvider = ({ children }) => {
   // Not executed first time
   useEffect(() => {
     const fetchLocation = async () => {
+      setIsLoading(true);
       if (cityName) {
         try {
           const locationOptions = {

@@ -1,8 +1,9 @@
 import React from "react";
 import { useAccomsContext } from "../../context/AccomsProvider";
 import MainPageItem from "./MainPageItem";
-import Loading from "../loading/Loading"
+import Loading from "../loading/Loading";
 import "./MainPage.css";
+import { v4 as uuid } from "uuid";
 
 const MainPage = () => {
   const {
@@ -24,10 +25,10 @@ const MainPage = () => {
             </div>
           </section>
           <section >
-            <h2>Suggestions for you:</h2>
+            <h2>Hotels for you</h2>
             <div className="items-container">
               {searchResult.map((accom) => (
-                <MainPageItem key={accom.id} {...accom} />
+                <MainPageItem key={uuid()} {...accom} />
               ))}
             </div>
           </section>

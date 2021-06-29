@@ -1,8 +1,8 @@
 .header-container {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 1rem 5rem 1rem 1rem;
   border-bottom: 1px solid lightgray;
   position: fixed;
   z-index: 100;
@@ -15,7 +15,7 @@
 .header-search-container {
   display: flex;
   justify-content: center;
-  width: 15%;
+  width: 20%;
   border: 1px solid lightgray;
   border-radius: 3rem;
   box-shadow: 0px 10px 5px -10px gray;
@@ -37,6 +37,27 @@
   background-color: #ff385c;
   border-radius: 3rem;
   cursor: pointer;
+}
+
+.submit-btn {
+  background: #ff385c;
+  border-radius: 20%;
+  cursor: pointer;
+  color: white;
+}
+
+.destination {
+  display: flex;
+  flex-direction: column;
+}
+
+.change-destination {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.destination-name {
+  font-size: 1.1rem;
 }
 
 .search-icon {
