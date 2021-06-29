@@ -6,26 +6,26 @@ const searchParamsReducer = (state, action) => {
         destinationId: action.payload
       }
     case "SET_ITINERARY":
-      console.log("itinerary");
       return {
         ...state,
         ...action.payload
       }
-      // case "SET_CHECKOUT_DATE":
-      //   return {
-      //     ...state,
-      //     destinationId: action.payload
-      //   }
-      // case "SET_CHECKIN_DATE':
-      //   return {
-      //     ...state,
-      //     destinationId: action.payload
-      //   }
-      // case "SET_NUM_OF_GUESTS":
-      //   return {
-      //     ...state,
-      //     destinationId: action.payload
-      //   }
+    case "CHANGE_SORT_ORDER":
+      console.log("sort-order")
+      return {
+        ...state,
+        sortOrder: action.payload
+      }
+    // case "SET_CHECKIN_DATE':
+    //   return {
+    //     ...state,
+    //     destinationId: action.payload
+    //   }
+    // case "SET_NUM_OF_GUESTS":
+    //   return {
+    //     ...state,
+    //     destinationId: action.payload
+    //   }
     default:
       return state;
   }

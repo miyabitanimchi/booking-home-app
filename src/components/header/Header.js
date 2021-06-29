@@ -11,13 +11,11 @@ const Header = () => {
   const [checkOutDate, setCheckOutdate] = useState("");
   const [numOfGuests, setNumOfGuests] = useState("1");
   const [city, setCity] = useState("");
-  const { dispatchSearchParams, setCityName } = useAccomsContext();
 
-  // console.log(checkInDate, checkOutDate, numOfGuests);
-  // console.log(typeof numOfGuests);
-  // console.log(typeof checkOutDate);
-  // console.log(city);
-
+  const {
+    dispatchSearchParams,
+    setCityName,
+  } = useAccomsContext();
 
   const onSubmitSearchInfo = () => {
     console.log("hello");

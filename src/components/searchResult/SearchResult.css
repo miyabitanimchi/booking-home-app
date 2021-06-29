@@ -1,3 +1,15 @@
 .search-result-container {
-  padding-top: 5rem;
+  padding-top: 5.5rem;
+  width: 85vw;
+  margin: 0 auto;
+}
+
+.search-title-options-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.search-result-title {
+  font-size: 1.4rem;
 }
