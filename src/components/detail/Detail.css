@@ -35,7 +35,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0rem 1rem;
   cursor: pointer;
   border-radius: 0.3rem;
 }
@@ -90,7 +89,7 @@
 }
 
 .host-keywords {
-  margin: 0.3rem 0rem;
+  margin: 0.3rem 1rem;
   color: rgb(100, 100, 100);
 }
 
@@ -114,6 +113,11 @@
 .home-icon {
   width: 1.5rem;
   height: 1.5rem;
+  /* color: gray; */
+}
+
+.good{
+  color: green;
 }
 
 .detail-perks {
@@ -152,6 +156,13 @@
   display: flex;
   margin: 1.5rem;
   font-size: 1.5rem;
+}
+
+.oldPrice{
+  text-decoration: line-through;
+  color: lightgray;
+  font-weight: normal;
+  font-size: 1.1rem;
 }
 
 .price-night {
@@ -225,6 +236,7 @@
   width: 1.6rem;
   height: 1.6rem;
   color: gray;
+  cursor: pointer;
 }
 
 .guest-input {
