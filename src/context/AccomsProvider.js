@@ -1,16 +1,23 @@
 import React, { useState, createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import searchParamsReducer from "../reducer/searchParamsReducer";
+import moment from 'moment';
 
 const AccomsContext = createContext();
+
+const DATE_NOW = moment().format("YYYY-MM-DD");
+// one week from today's date
+const DEFAULT_DATE = moment(DATE_NOW, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD");
+const ONE_WEEK_FROM_DEFAULT_DATE = moment(DEFAULT_DATE, "YYYY-MM-DD").add(7, 'd').format("YYYY-MM-DD");
+console.log(ONE_WEEK_FROM_DEFAULT_DATE);
 
 const INITIAL_SEARCH_PARAMS = {
   adults1: "1",
   pageNumber: "1",
   destinationId: "169712",
   pageSize: "25",
-  checkOut: "2021-07-12",
-  checkIn: "2021-07-05",
+  checkIn: DEFAULT_DATE,
+  checkOut: ONE_WEEK_FROM_DEFAULT_DATE,
   sortOrder: "BEST_SELLER",
   locale: "en_CA",
   currency: "CAD",
@@ -95,6 +102,7 @@ const AccomsProvider = ({ children }) => {
       dispatchSearchParams,
       locationTitle,
       isLoading,
+      searchParams,
     }}>
       {children}
     </AccomsContext.Provider>
