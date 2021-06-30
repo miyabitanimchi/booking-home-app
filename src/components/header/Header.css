@@ -43,7 +43,9 @@
   background: #ff385c;
   border-radius: 20%;
   cursor: pointer;
-  color: white;
+  color: white!important;
+  padding: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .destination {
@@ -54,6 +56,21 @@
 .change-destination {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.itinerary-wrap {
+  display: flex;
+  width: 35%;
+  justify-content: space-evenly;
+}
+
+.display-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-font-size {
+  font-size: 0.9rem;
 }
 
 .destination-name {

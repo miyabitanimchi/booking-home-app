@@ -43,7 +43,7 @@ const Header = () => {
       <div className='header-container'>
         {/* Logo - link to main page */}
         <div>
-          <Link to="/" className='header-logo'>
+          <Link to="/" className='header-logo' onClick={() => setIsCitySet(false)}>
             Airbnbish
           </Link>
         </div>
@@ -67,22 +67,33 @@ const Header = () => {
               <p className="destination-name">{city.toUpperCase()}</p>
               <p className="change-destination" onClick={() => setIsCitySet(false)}> Change Destinatiion</p>
             </div>
-            <input type="date" name="check-in" onChange={(e) => setCheckInDate(e.target.value)} />
-            <input type="date" name="check-out" onChange={(e) => setCheckOutdate(e.target.value)} />
-            <select onChange={(e) => setNumOfGuests(e.target.value)}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <div className='header-search-icon'>
-              <Link to="/searchresult"><BiSearch onClick={() => onSubmitSearchInfo()} className='search-icon' /></Link>
+            <div className="itinerary-wrap">
+              <div className="display-column">
+                <label htmlFor="date" className="label-font-size">Check in</label>
+                <input type="date" name="check-in" onChange={(e) => setCheckInDate(e.target.value)} />
+              </div>
+              <div className="display-column">
+                <label htmlFor="date" className="label-font-size">Check out</label>
+                <input type="date" name="check-out" onChange={(e) => setCheckOutdate(e.target.value)} />
+              </div>
+              <div className="display-column">
+                <label className="label-font-size">Guests</label>
+                <select onChange={(e) => setNumOfGuests(e.target.value)}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div className='header-search-icon'>
+                <Link to="/searchresult"><BiSearch onClick={() => onSubmitSearchInfo()} className='search-icon' /></Link>
+              </div>
             </div>
           </>
         )}
