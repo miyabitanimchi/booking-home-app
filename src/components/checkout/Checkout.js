@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
+import PopUp from './popUp/PopUp';
+import Details from '../detail/Detail';
 
 import { IoIosArrowBack } from 'react-icons/io';
 import { BsCreditCard } from 'react-icons/bs';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaCcPaypal } from 'react-icons/fa';
 import { SiGooglepay } from 'react-icons/si';
-import { AiFillStar } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
 
 import './Checkout.css';
 
-const Checkout = (props) => {
+const prevUserData = [];
 
+const Checkout = (props) => {
+    console.log(props);
+
+    const [isAdding, setIsAdding] = useState(false);
+
+    let allGuest = props.location.detailProps.adultsGuest + props.location.detailProps.childrenGuest + props.location.detailProps.infantsGuest;
+    let nightPrice = props.location.detailProps.price * 3;
+    let totalPrice = (props.location.detailProps.price * 3) + 50 + 25;
+    let halfPrice = totalPrice / 2;
+    let perNightPrice = props.location.detailProps.price;
 
     const submitHandler = () => {
 
+    }
+    const popUpModal = () => {
+        console.log(isAdding);
+        setIsAdding(!isAdding);
+    }
+    const closePopUp = () => {
+        setIsAdding(false);
     }
 
     return (
@@ -21,7 +42,11 @@ const Checkout = (props) => {
             <div className='checkout-container'>
                 <form onSubmit={submitHandler}>
                     <div className='backBtn-wrap'>
-                        <IoIosArrowBack className='checkout-arrow' />
+                        <Link to="/">
+                            <div className='checkout-arrow'>
+                                <IoIosArrowBack />
+                            </div>
+                        </Link>
                         <button className='checkout-backBtn'>
                             Request to book
                         </button>
@@ -32,7 +57,7 @@ const Checkout = (props) => {
                             <div className='yourTrip-info'>
                                 <div>
                                     <p className='yourTrip-date'>Dates</p>
-                                    <p className='yourTrip-data'>Aug. 12 - Aug.26</p>
+                                    <p className='yourTrip-data'>{props.location.detailProps.checkInDate} | {props.location.detailProps.checkOutDate}</p>
                                 </div>
                                 <div className='yourTrip-btn'>
                                     <button>Edit</button>
@@ -41,7 +66,7 @@ const Checkout = (props) => {
                             <div className='yourTrip-info'>
                                 <div>
                                     <p className='yourTrip-date'>Guest</p>
-                                    <p className='yourTrip-data'>2 guest</p>
+                                    <p className='yourTrip-data'>{allGuest} guest</p>
                                 </div>
                                 <div className='yourTrip-btn'>
                                     <button>Edit</button>
@@ -58,7 +83,7 @@ const Checkout = (props) => {
                                     <p className='payText'>Pay the total now and you're all set.</p>
                                 </div>
                                 <div className='howToPayRadio'>
-                                    <span className='howToPaySpan'>$2,756.60</span>
+                                    <span className='howToPaySpan'>${totalPrice}</span>
                                     <input
                                         className='radioInput'
                                         type='radio'
@@ -69,10 +94,10 @@ const Checkout = (props) => {
                             <div className='howToPay-wrap second'>
                                 <div className='howToPay-text-wrap'>
                                     <p className='payBold'>Pay part now, part later</p>
-                                    <p className='payText'>Pay $1,378.30 now, and the rest ($1,378.30) will be automatically charged to the same payment method next month. No extra fees.</p>
+                                    <p className='payText'>Pay ${halfPrice.toFixed(2)} now, and the rest (${halfPrice.toFixed(2)}) will be automatically charged to the same payment method next month. No extra fees.</p>
                                 </div>
                                 <div className='howToPayRadio'>
-                                    <span className='howToPaySpan'>$1,378.60</span>
+                                    <span className='howToPaySpan'>${halfPrice.toFixed(2)}</span>
                                     <input
                                         className='radioInput'
                                         type='radio'
@@ -86,7 +111,7 @@ const Checkout = (props) => {
                         <p className='howToPay-title'>Pay with</p>
                         <div className='payMethod'>
                             <div className='payMethod-wrap'>
-                                <div className='payWith-wrap'>
+                                <div onClick={popUpModal} className='payWith-wrap'>
                                     <div className='payWith-text-wrap'>
                                         <BsCreditCard className='bsCreditCard' />
                                         <p>Credit or debit card</p>
@@ -97,7 +122,7 @@ const Checkout = (props) => {
                                 </div>
                             </div>
                             <div className='payMethod-wrap paypal'>
-                                <div className='payWith-wrap'>
+                                <a href='https://www.paypal.com/' target='_blank' className='payWith-wrap'>
                                     <div className='payWith-text-wrap'>
                                         <FaCcPaypal className='bsCreditCard' />
                                         <p>Paypal</p>
@@ -105,10 +130,10 @@ const Checkout = (props) => {
                                     <div className='payWithModal'>
                                         <AiOutlinePlus />
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div className='payMethod-wrap third'>
-                                <div className='payWith-wrap'>
+                                <a href='https://pay.google.com/intl/en_us/about/' target='_blank' className='payWith-wrap'>
                                     <div className='payWith-text-wrap'>
                                         <SiGooglepay className='bsCreditCard google' />
                                         <p>Google Pay</p>
@@ -116,7 +141,7 @@ const Checkout = (props) => {
                                     <div className='payWithModal'>
                                         <AiOutlinePlus />
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -133,15 +158,15 @@ const Checkout = (props) => {
                 <div className='checkout-resume'>
                     <div className='resume-top'>
                         <div className='resumeImg'>
-                            <img />
+                            <img src={props.location.detailProps.img} />
                         </div>
                         <div className='resumeText'>
-                            <p className='resumeTitle'>Private room in house in Burnaby</p>
-                            <p className='resumeDescription'>Private room in house in Burnaby</p>
-                            <p className='resumeInfo'>1 bed - 2 baths</p>
+                            <p className='resumeTitle'>{props.location.detailProps.title}</p>
+                            <p className='resumeDescription'>{props.location.detailProps.address}</p>
+                            <p className='resumeInfo'>{props.location.detailProps.neighbourhood}</p>
                             <p className='resumeScore'>
-                                <AiFillStar className='star-icon' />
-                                <span className='resumeScoreText'>4.21</span>
+                                <AiOutlineStar className='star-icon' />
+                                <span className='resumeScoreText'>{props.location.detailProps.startRating} star hotel </span>
                             </p>
                         </div>
                     </div>
@@ -149,10 +174,10 @@ const Checkout = (props) => {
                         <p className='resumePrice'>Price details</p>
                         <div className='priceDetails-container'>
                             <div className='priceDetails-text'>
-                                <p>$42.50 x 14 nights</p>
+                                <p>${perNightPrice.toFixed(2)} x 3 nights</p>
                             </div>
                             <div className='priceDetails-number'>
-                                <p>$595.00</p>
+                                <p>${nightPrice.toFixed(2)}</p>
                             </div>
                         </div>
                         <div className='priceDetails-container'>
@@ -160,7 +185,7 @@ const Checkout = (props) => {
                                 <p>Service fee</p>
                             </div>
                             <div className='priceDetails-number'>
-                                <p>$595.00</p>
+                                <p>$50.00</p>
                             </div>
                         </div>
                         <div className='priceDetails-container'>
@@ -168,7 +193,7 @@ const Checkout = (props) => {
                                 <p>Extra taxes and fees</p>
                             </div>
                             <div className='priceDetails-number'>
-                                <p>$595.00</p>
+                                <p>$25.00</p>
                             </div>
                         </div>
                         <div className='priceDetails-container'>
@@ -176,12 +201,13 @@ const Checkout = (props) => {
                                 <p>Total (CAD)</p>
                             </div>
                             <div className='priceDetails-number total'>
-                                <p>$595.00</p>
+                                <p>${totalPrice.toFixed(2)}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {isAdding ? <PopUp close={closePopUp}/> : null}
         </>
     );
 };

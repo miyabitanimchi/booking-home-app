@@ -98,8 +98,8 @@ const Header = () => {
           </>
         )}
         <div className='header-menu'>
-          <Link to="/detail">Detail </Link>
-          <Link to="/checkout">Checkout </Link>
+          {/* <Link to="/detail">Detail </Link>
+          <Link to="/checkout">Checkout </Link> */}
           <CgProfile className='profile' />
         </div>
       </div>

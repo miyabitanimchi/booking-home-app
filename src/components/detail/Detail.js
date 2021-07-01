@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAccomsContext } from "../../context/AccomsProvider";
+import Checkout from '../checkout/Checkout';
+import { Link } from "react-router-dom";
 import './Detail.css';
 
 import { AiFillStar } from 'react-icons/ai';
@@ -10,7 +12,6 @@ import { GoLocation } from 'react-icons/go';
 import { GrStatusGood } from 'react-icons/gr';
 import { TiCancel } from 'react-icons/ti';
 import { BiDollarCircle } from 'react-icons/bi';
-import Checkout from "../checkout/Checkout";
 
 const Detail = (props) => {
     const [hotelData, setHotelData] = useState([]);
@@ -44,29 +45,13 @@ const Detail = (props) => {
 
     const checkInHandler = e => {
         e.preventDefault();
-        setCheckIn(e.target.value);
         console.log(checkIn);
+        setCheckIn(e.target.value);
     }
     const checkOutHandler = e => {
         e.preventDefault();
-        setCheckOut(e.target.value);
         console.log(checkOut);
-    }
-    const submitHandler = e => {
-        e.preventDefault();
-        setTotalGuest(aCount + cCount + iCount);
-        console.log("Total guest: ", totalGuest);
-
-        if(checkIn === '' || checkOut === ''){
-            alert('Please select a checkin and check-ou date');
-        }else{
-            const reservationData = {
-                checkInDate: checkIn,
-                checkOutDate: checkOut,
-                guest: totalGuest,
-            }
-        }
-
+        setCheckOut(e.target.value);
     }
 
     return (
@@ -144,9 +129,9 @@ const Detail = (props) => {
                                     </div>
                                 </div>
                                 <div className='detail-reserve'>
-                                    <form onSubmit={submitHandler}>
+                                    <form>
                                         <div className='detail-price'>
-                                            <h3>{data.ratePlan.price.old ? <span className='oldPrice'>{data.ratePlan.price.old}</span> : '-'}${data.ratePlan.price.exactCurrent}</h3>
+                                            <h3>{data.ratePlan.price.old ? <span className='oldPrice'>{data.ratePlan.price.old}</span> : ''}${data.ratePlan.price.exactCurrent}</h3>
                                             <h3 className='price-night'>/ night</h3>
                                         </div>
                                         <div className='detail-checkin-checkout'>
@@ -177,7 +162,7 @@ const Detail = (props) => {
                                                     <div className='guest-input-wrap'>
                                                         <GrSubtractCircle
                                                             className='mathSign'
-                                                            onClick={()=>setACount(aCount - 1)}
+                                                            onClick={() => setACount(aCount - 1)}
                                                         />
                                                         <input
                                                             className='guest-input'
@@ -187,7 +172,7 @@ const Detail = (props) => {
                                                         />
                                                         <GrAddCircle
                                                             className='mathSign'
-                                                            onClick={()=>setACount(aCount + 1)}
+                                                            onClick={() => setACount(aCount + 1)}
                                                         />
                                                     </div>
                                                 </div>
@@ -198,7 +183,7 @@ const Detail = (props) => {
                                                     <div className='guest-input-wrap children'>
                                                         <GrSubtractCircle
                                                             className='mathSign'
-                                                            onClick={()=>setCCount(cCount - 1)}
+                                                            onClick={() => setCCount(cCount - 1)}
                                                         />
                                                         <input
                                                             className='guest-input'
@@ -208,7 +193,7 @@ const Detail = (props) => {
                                                         />
                                                         <GrAddCircle
                                                             className='mathSign'
-                                                            onClick={()=>setCCount(cCount + 1)}
+                                                            onClick={() => setCCount(cCount + 1)}
                                                         />
                                                     </div>
                                                 </div>
@@ -217,7 +202,7 @@ const Detail = (props) => {
                                                     <div className='guest-input-wrap infants'>
                                                         <GrSubtractCircle
                                                             className='mathSign'
-                                                            onClick={()=>setICount(iCount - 1)}
+                                                            onClick={() => setICount(iCount - 1)}
                                                         />
                                                         <input
                                                             className='guest-input'
@@ -227,19 +212,34 @@ const Detail = (props) => {
                                                         />
                                                         <GrAddCircle
                                                             className='mathSign'
-                                                            onClick={()=>setICount(iCount + 1)}
+                                                            onClick={() => setICount(iCount + 1)}
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='goToPayment-wrap'>
+                                        <Link to={{
+                                            pathname:"/checkout",
+                                            detailProps:{
+                                                checkInDate: checkIn,
+                                                checkOutDate: checkOut,
+                                                adultsGuest: aCount,
+                                                childrenGuest: cCount,
+                                                infantsGuest: iCount,
+                                                img: data.optimizedThumbUrls.srpDesktop,
+                                                title: data.name,
+                                                address: data.address.streetAddress,
+                                                neighbourhood: data.neighbourhood,
+                                                startRating: data.starRating,
+                                                price: data.ratePlan.price.exactCurrent,
+                                            }
+                                        }}
+                                            className='goToPayment-wrap'>
                                             <input
                                                 className='goToPayment-input'
                                                 type='submit'
                                                 value='Go to payment'
-                                            />
-                                        </div>
+                                            /></Link>
                                     </form>
                                 </div>
                             </div>
