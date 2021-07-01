@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAccomsContext } from "../../context/AccomsProvider";
-import Checkout from '../checkout/Checkout';
 import { Link } from "react-router-dom";
 import './Detail.css';
 
@@ -20,7 +19,6 @@ const Detail = (props) => {
     const [aCount, setACount] = useState(1);
     const [cCount, setCCount] = useState(0);
     const [iCount, setICount] = useState(0);
-    const [totalGuest, setTotalGuest] = useState('');
 
     const {
         searchResult, //this will bring me the array from context api
@@ -35,7 +33,10 @@ const Detail = (props) => {
             const currentHotel = searchResult.filter((hotel) =>
                 hotel.id === Number(props.match.params.id))
             console.log('Your current hotel: ', currentHotel)
-            setHotelData(currentHotel);
+            const noDuplicate = Array.from(new Set(currentHotel.map(h => h.id))).map(id =>{
+                return currentHotel.find(h => h.id === Number(props.match.params.id))
+            })
+            setHotelData(noDuplicate);
         } else {
             alert('There is no list to filter! Check Context API')
         }
@@ -78,7 +79,7 @@ const Detail = (props) => {
                                         <div className='host-keywords'>
                                             <h1 className='host-title'>{data.name}</h1>
                                             <AiFillStar className='star-icon' />
-                                            <span className='score'>{data.guestReviews.rating ? data.guestReviews.rating : '(No reviews yet)'}</span>
+                                            <span className='score'>{data.guestReviews ? data.guestReviews.rating : '(No reviews yet)'}</span>
                                             <span className='location'> {data.address.locality}, {data.address.region} - {data.address.countryName}</span>
                                             <span className='save'>
                                                 <AiOutlineHeart className='save-icon' />Save

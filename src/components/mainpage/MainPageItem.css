@@ -1,8 +1,19 @@
 .item-wrap {
-  margin: 1rem 1rem 1rem 0;
+  margin: 1rem 1.1rem 1rem 0;
+  float: right;
   cursor: pointer;
+}
+.item-wrap:hover {
+  scale: 2;
+  transition: 1s;
 }
 
 .accom-img {
+  border-radius: 0.5rem;
   width: 400px;
+}
+
+.item-name {
+  color: rgb(27, 27, 27);
+  font-size: 1.3rem;
 }
