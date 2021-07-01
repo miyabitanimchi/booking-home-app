@@ -8,7 +8,7 @@ const MainPageItem = ({ optimizedThumbUrls, name, id }) => {
     <Link to={"/detail/" + id}>
       <div className="item-wrap">
         <img className="accom-img" src={optimizedThumbUrls && optimizedThumbUrls.srpDesktop} alt={name} />
-        <h4>{name}</h4>
+        <h4 className='item-name'>{name}</h4>
       </div>
     </Link>
   )

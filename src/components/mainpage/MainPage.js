@@ -25,20 +25,22 @@ const MainPage = () => {
             </div>
           </section>
           <section >
-            <h2>Hotels for you</h2>
-            <div className="items-container">
-              {searchResult.map((accom) => (
-                <MainPageItem key={uuid()} {...accom} />
-              ))}
+            <h2 className='hotel4U'>Hotels for you</h2>
+            <div className='items-mainWrap'>
+              <div className="items-container">
+                {searchResult.map((accom) => (
+                  <MainPageItem key={uuid()} {...accom} />
+                ))}
+              </div>
             </div>
           </section>
 
         </main>
       ) : (
-          <main>
-            <Loading />
-          </main>
-        )}
+        <main>
+          <Loading />
+        </main>
+      )}
     </>
   );
 };

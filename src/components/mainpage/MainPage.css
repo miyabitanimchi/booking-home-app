@@ -1,6 +1,16 @@
-.items-container {
+.hotel4U{
+  margin: 1rem 1rem;
+  font-size: 2rem;
+}
+
+.items-mainWrap{
   display: flex;
-  overflow-x: scroll;
+  justify-content: center;
+}
+
+.items-container {
+  margin: 1rem;
+  width: 90%;
 }
 
 .top-wrap {

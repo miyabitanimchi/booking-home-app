@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+import './Checkout.css';
 
 import { Link } from "react-router-dom";
 import PopUp from './popUp/PopUp';
-import Details from '../detail/Detail';
+import { useAccomsContext } from "../../context/AccomsProvider";
+
 
 import { IoIosArrowBack } from 'react-icons/io';
 import { BsCreditCard } from 'react-icons/bs';
@@ -11,18 +14,22 @@ import { FaCcPaypal } from 'react-icons/fa';
 import { SiGooglepay } from 'react-icons/si';
 import { AiOutlineStar } from 'react-icons/ai';
 
-import './Checkout.css';
-
-const prevUserData = [];
 
 const Checkout = (props) => {
     console.log(props);
-
+    
     const [isAdding, setIsAdding] = useState(false);
+    
+    const {
+        searchParams, //this will bring me the array from context api
+    } = useAccomsContext();
+    
+    const nights = moment.duration(moment(props.location.detailProps.checkOutDate, "YYYY-MM-DD").diff(moment(props.location.detailProps.checkInDate, "YYYY-MM-DD"))).asDays();
+    console.log(nights);
 
     let allGuest = props.location.detailProps.adultsGuest + props.location.detailProps.childrenGuest + props.location.detailProps.infantsGuest;
-    let nightPrice = props.location.detailProps.price * 3;
-    let totalPrice = (props.location.detailProps.price * 3) + 50 + 25;
+    let nightPrice = props.location.detailProps.price * nights;
+    let totalPrice = (props.location.detailProps.price * nights) + 50 + 25;
     let halfPrice = totalPrice / 2;
     let perNightPrice = props.location.detailProps.price;
 
@@ -57,7 +64,7 @@ const Checkout = (props) => {
                             <div className='yourTrip-info'>
                                 <div>
                                     <p className='yourTrip-date'>Dates</p>
-                                    <p className='yourTrip-data'>{props.location.detailProps.checkInDate} | {props.location.detailProps.checkOutDate}</p>
+                                    <p className='yourTrip-data'>{props.location.detailProps.checkInDate} | {props.location.detailProps.checkOutDate} ({nights} nights)</p>
                                 </div>
                                 <div className='yourTrip-btn'>
                                     <button>Edit</button>
@@ -83,7 +90,7 @@ const Checkout = (props) => {
                                     <p className='payText'>Pay the total now and you're all set.</p>
                                 </div>
                                 <div className='howToPayRadio'>
-                                    <span className='howToPaySpan'>${totalPrice}</span>
+                                    <span className='howToPaySpan'>${totalPrice.toFixed(2)}</span>
                                     <input
                                         className='radioInput'
                                         type='radio'
@@ -174,7 +181,7 @@ const Checkout = (props) => {
                         <p className='resumePrice'>Price details</p>
                         <div className='priceDetails-container'>
                             <div className='priceDetails-text'>
-                                <p>${perNightPrice.toFixed(2)} x 3 nights</p>
+                                <p>${perNightPrice.toFixed(2)} x {nights} nights</p>
                             </div>
                             <div className='priceDetails-number'>
                                 <p>${nightPrice.toFixed(2)}</p>
