@@ -1,16 +1,22 @@
 .item-wrap {
-  margin: 1rem 1.1rem 1rem 0;
-  float: right;
+  margin: 4rem;
+  width: 400px;
+  height: 225px;
+  float: left;
   cursor: pointer;
 }
 .item-wrap:hover {
-  scale: 2;
-  transition: 1s;
+
 }
 
 .accom-img {
   border-radius: 0.5rem;
   width: 400px;
+}
+
+.accom-img:hover {
+  transform: scale(1.5);
+  transition: 0.5s;
 }
 
 .item-name {
