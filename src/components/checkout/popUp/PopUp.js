@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import { CountryDropdown } from 'react-country-region-selector';
+
 import './PopUp.css';
 
 import { RiVisaLine } from 'react-icons/ri';
@@ -6,8 +9,26 @@ import { SiAmericanexpress } from 'react-icons/si';
 
 const PopUp = props => {
 
+    const [enteredCard, setEnteredCard ] = useState('');
+    const [enteredCountry, setEnteredCountry ] = useState('');
+
     const closeBtn = () => {
         props.close();
+    }
+
+    const doneBtn = () => {
+        props.cardNumberBool(true);
+        props.close();
+    }
+
+    const countryHandler = country => {
+        setEnteredCountry(country);
+    }
+    const cardHandler = e => {
+        e.preventDefault();
+        setEnteredCard(e.target.value);
+        console.log(enteredCard);
+        props.getCardNum(enteredCard)
     }
 
     return (
@@ -26,24 +47,32 @@ const PopUp = props => {
                     <form className='popUp-formWrap'>
                         <input className='input100'
                             placeholder='Card number'
+                            type='tel'
+                            value={enteredCard}
+                            onChange={cardHandler}
                         />
                         <div>
                             <input className='input50 first50'
-                                placeholder='Expiration'
+                                placeholder='Expiration (MM/YY)'
                             />
                             <input className='input50 second50'
                                 placeholder='CVV'
+                                type='number'
+                                max='3'
                             />
                         </div>
                         <input className='input100 postalCode'
                             placeholder='Postal code'
                         />
-                        <input className='input100 country'
+                        <CountryDropdown className='input100 country'
                             placeholder='Country'
+                            value={enteredCountry}
+                            onChange={countryHandler}
                         />
                         <button
                             className='cardBtn'
-                            type='submit'>Done</button>
+                            type='submit'
+                            onClick={doneBtn}>Done</button>
                     </form>
                 </div>
             </div>

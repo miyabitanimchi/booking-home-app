@@ -1,10 +1,10 @@
+import { useAccomsContext } from "../../context/AccomsProvider";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import './Checkout.css';
 
-import { Link } from "react-router-dom";
 import PopUp from './popUp/PopUp';
-import { useAccomsContext } from "../../context/AccomsProvider";
 
 
 import { IoIosArrowBack } from 'react-icons/io';
@@ -17,13 +17,15 @@ import { AiOutlineStar } from 'react-icons/ai';
 
 const Checkout = (props) => {
     console.log(props);
-    
+
     const [isAdding, setIsAdding] = useState(false);
-    
+    const [cardNumberBool, setCardNumberBool] = useState(false);
+    const [cardNumber, setCardNumber] = useState([]);
+
     const {
         searchParams, //this will bring me the array from context api
     } = useAccomsContext();
-    
+
     const nights = moment.duration(moment(props.location.detailProps.checkOutDate, "YYYY-MM-DD").diff(moment(props.location.detailProps.checkInDate, "YYYY-MM-DD"))).asDays();
     console.log(nights);
 
@@ -32,9 +34,21 @@ const Checkout = (props) => {
     let totalPrice = (props.location.detailProps.price * nights) + 50 + 25;
     let halfPrice = totalPrice / 2;
     let perNightPrice = props.location.detailProps.price;
+    const lastCardNum = cardNumber.slice(10, 15);
+
+    const saveCCNumber = number => {
+        setCardNumber(number);
+        console.log("In checkout", cardNumber);
+    }
+
+    const changeCardBool = bool => {
+        setCardNumberBool(bool);
+        console.log("In checkout", cardNumberBool);
+    }
 
     const submitHandler = () => {
-
+        setCardNumberBool(false);
+        alert('Payment aprooved')
     }
     const popUpModal = () => {
         console.log(isAdding);
@@ -67,7 +81,7 @@ const Checkout = (props) => {
                                     <p className='yourTrip-data'>{props.location.detailProps.checkInDate} | {props.location.detailProps.checkOutDate} ({nights} nights)</p>
                                 </div>
                                 <div className='yourTrip-btn'>
-                                    <button>Edit</button>
+                                    <button type='button'>Edit</button>
                                 </div>
                             </div>
                             <div className='yourTrip-info'>
@@ -122,6 +136,7 @@ const Checkout = (props) => {
                                     <div className='payWith-text-wrap'>
                                         <BsCreditCard className='bsCreditCard' />
                                         <p>Credit or debit card</p>
+                                        <span className='cardEnd'>{cardNumberBool ? `ending with ...${lastCardNum}` : ''}</span>
                                     </div>
                                     <div className='payWithModal'>
                                         <AiOutlinePlus />
@@ -156,10 +171,12 @@ const Checkout = (props) => {
                         <p className='howToPay-title'>Cancellation policy</p>
                         <p><span className='boldText'>Free cancellation for 48 hours. </span>After that, cancel before 3:00 PM on Jul. 8 and get a 50% refund, minus the service fee.</p>
                     </div>
-                    <button
-                        className='confirmBtn'
-                        type='submit'
-                    >Confirm and pay</button>
+                    <div className='confirmBtn-wrap'>
+                        <Link to="/"
+                            className='confirmBtn'
+                            type='submit'
+                        >Confirm and pay</Link>
+                    </div>
                 </form>
                 {/* RESUME */}
                 <div className='checkout-resume'>
@@ -172,8 +189,13 @@ const Checkout = (props) => {
                             <p className='resumeDescription'>{props.location.detailProps.address}</p>
                             <p className='resumeInfo'>{props.location.detailProps.neighbourhood}</p>
                             <p className='resumeScore'>
-                                <AiOutlineStar className='star-icon' />
-                                <span className='resumeScoreText'>{props.location.detailProps.startRating} star hotel </span>
+                                {/* <AiOutlineStar className='star-icon' />
+                                <span className='resumeScoreText'>{props.location.detailProps.startRating} star hotel </span> */}
+                                {props.location.detailProps.startRating ?
+                                    <span className='resumeScoreText'><AiOutlineStar className='star-icon' />{props.location.detailProps.startRating} star hotel </span>
+                                    :
+                                    '(No rating)'
+                                }
                             </p>
                         </div>
                     </div>
@@ -214,7 +236,7 @@ const Checkout = (props) => {
                     </div>
                 </div>
             </div>
-            {isAdding ? <PopUp close={closePopUp}/> : null}
+            {isAdding ? <PopUp close={closePopUp} getCardNum={saveCCNumber} cardNumberBool={changeCardBool} /> : null}
         </>
     );
 };
