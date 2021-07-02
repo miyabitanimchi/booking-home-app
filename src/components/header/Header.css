@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 1rem 5rem 1rem 1rem;
   border-bottom: 1px solid lightgray;
-  position: fixed;
+  /* position: fixed; */
   z-index: 100;
 }
 
@@ -25,6 +25,7 @@
   height: 2rem;
   border: transparent;
   margin: auto;
+  font-size: .9rem;
 }
 
 .header-search-icon {
@@ -77,6 +78,11 @@
   font-size: 1.1rem;
 }
 
+.submit-btn{
+  margin: .3rem;
+  border-radius: 1rem;
+}
+
 .search-icon {
   color: white;
 }
@@ -88,7 +94,7 @@
   display: flex;
   font-size: 1.3rem;
   border: 1px solid lightgray;
-  border-radius: 3rem;
+  border-radius: 3rem !important;
 }
 
 .profile {
