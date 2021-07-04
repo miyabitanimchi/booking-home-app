@@ -105,6 +105,7 @@
 }
 
 .country {
+  color: gray;
   border-bottom: 1px solid darkgray !important;
   border-bottom-left-radius: 0.5rem !important;
   border-bottom-right-radius: 0.5rem !important;
