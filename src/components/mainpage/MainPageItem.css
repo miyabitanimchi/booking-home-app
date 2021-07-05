@@ -5,9 +5,8 @@
   float: left;
   cursor: pointer;
 }
-.item-wrap:hover {
 
-}
+.item-wrap:hover {}
 
 .accom-img {
   border-radius: 0.5rem;
@@ -15,7 +14,7 @@
 }
 
 .accom-img:hover {
-  transform: scale(1.5);
+  transform: scale(1.1);
   transition: 0.5s;
 }
 
